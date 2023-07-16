@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>reserve</class>
+ <widget class="QWidget" name="reserve">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>784</width>
+    <height>397</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>30</y>
+     <width>711</width>
+     <height>340</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_10">
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="lastName_lineEdit"/>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLineEdit" name="id_lineEdit"/>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="firstName_label">
+      <property name="text">
+       <string>first name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="lastName_label">
+      <property name="text">
+       <string>lastName</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="firstName_lineEdit"/>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLineEdit" name="room_lineEdit"/>
+    </item>
+    <item row="6" column="2">
+     <widget class="QPushButton" name="reserve_pushButton">
+      <property name="text">
+       <string>reserve</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="id_label">
+      <property name="text">
+       <string>id</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="room_label">
+      <property name="text">
+       <string>Room</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="3">
+     <widget class="QCalendarWidget" name="calendarWidget"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>firstName_lineEdit</tabstop>
+  <tabstop>lastName_lineEdit</tabstop>
+  <tabstop>id_lineEdit</tabstop>
+  <tabstop>room_lineEdit</tabstop>
+  <tabstop>reserve_pushButton</tabstop>
+  <tabstop>calendarWidget</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

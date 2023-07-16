@@ -1,19 +1,20 @@
 #include "staffpanel.h"
 #include "ui_staffpanel.h"
 
+int staffPanel::roomNumber = 0 ;
+
 staffPanel::staffPanel(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::staffPanel)
 {
     ui->setupUi(this);
 
+    cho = new chooseOption() ;
+
+
+
     this->setStyleSheet("background-color:darkcyan ;");
     setCentralWidget(ui->tabWidget);
-
-    ui->calendarWidget->setCursor(Qt::PointingHandCursor);
-
-
-
 
     //
     ui->numberOfGuests_label->setAlignment(Qt::AlignCenter);
@@ -45,6 +46,16 @@ staffPanel::staffPanel(QWidget *parent) :
 
 }
 
+//int staffPanel::getRoomNumber()
+//{
+//    return this->roomNumber ;
+//}
+
+//void staffPanel::setRoomNumber(int _value)
+//{
+//    this->roomNumber = _value ;
+//}
+
 staffPanel::~staffPanel()
 {
     delete ui;
@@ -52,216 +63,290 @@ staffPanel::~staffPanel()
 
 void staffPanel::on_room100_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("100");
+    roomNumber = 100;
+//    this->setRoomNumber(100);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room101_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("101");
+    roomNumber = 101;
+//    this->setRoomNumber(101);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room102_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("102");
+    roomNumber = 102;
+//    this->setRoomNumber(102);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room103_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("103");
+    roomNumber = 103;
+//    this->setRoomNumber(103);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room104_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("104");
+    roomNumber = 104;
+//    this->setRoomNumber(104);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room105_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("105");
+    roomNumber = 105;
+//    this->setRoomNumber(105);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room106_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("106");
+    roomNumber = 106;
+//    this->setRoomNumber(106);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room107_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("107");
+    roomNumber = 107;
+//    this->setRoomNumber(107);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room108_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("108");
+    roomNumber = 108;
+//    this->setRoomNumber(108);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room109_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("109");
+    roomNumber = 109;
+//    this->setRoomNumber(109);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room110_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("110");
+    roomNumber = 110;
+//    this->setRoomNumber(110);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room111_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("111");
+    roomNumber = 111;
+//    this->setRoomNumber(111);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room200_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("200");
+    roomNumber = 200;
+//    this->setRoomNumber(200);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room201_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("201");
+    roomNumber = 201;
+//    this->setRoomNumber(201);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room202_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("202");
+    roomNumber = 202;
+//    this->setRoomNumber(202);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room203_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("203");
+    roomNumber = 203;
+//    this->setRoomNumber(203);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room204_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("204");
+    roomNumber = 204;
+//    this->setRoomNumber(204);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room205_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("205");
+    roomNumber = 205;
+//    this->setRoomNumber(205);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room206_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("206");
+    roomNumber = 206;
+//    this->setRoomNumber(206);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room207_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("207");
+    roomNumber = 207;
+//    this->setRoomNumber(207);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room208_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("208");
+    roomNumber = 208;
+//    this->setRoomNumber(208);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room209_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("209");
+    roomNumber = 209;
+//    this->setRoomNumber(209);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room210_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("210");
+    roomNumber = 210;
+//    this->setRoomNumber(210);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room211_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("211");
+    roomNumber = 211;
+//    this->setRoomNumber(211);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room300_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("300");
+    roomNumber = 300;
+//    this->setRoomNumber(300);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room301_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("301");
+    roomNumber = 301;
+//    this->setRoomNumber(301);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room302_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("302");
+    roomNumber = 302;
+//    this->setRoomNumber(302);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room303_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("303");
+    roomNumber = 303;
+//    this->setRoomNumber(303);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room304_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("304");
+    roomNumber = 304;
+//    this->setRoomNumber(304);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room305_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("305");
+    roomNumber = 305;
+//    this->setRoomNumber(305);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room306_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("306");
+    roomNumber = 306;
+//    this->setRoomNumber(306);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room307_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("307");
+    roomNumber = 307;
+//    this->setRoomNumber(307);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room308_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("308");
+    roomNumber = 308;
+//    this->setRoomNumber(308);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room309_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("309");
+    roomNumber = 309;
+//    this->setRoomNumber(309);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room310_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("310");
+    roomNumber = 310;
+//    this->setRoomNumber(310);
+    cho->show() ;
 }
 
 
 void staffPanel::on_room311_pushButton_clicked()
 {
-    ui->room_lineEdit->setText("311");
+    roomNumber = 311;
+//    this->setRoomNumber(311);
+    cho->show() ;
 }
+
+
 

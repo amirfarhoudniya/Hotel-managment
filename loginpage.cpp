@@ -12,7 +12,7 @@ loginPage::loginPage(QWidget *parent)
 
     ui->eye_pushButton->setIcon(QIcon(":/icons/icons/eye.png"));
 
-    //set type password for lineEdits
+    //set type password for lineEdit
     ui->password_lineEdit->setEchoMode(QLineEdit::Password);
 }
 

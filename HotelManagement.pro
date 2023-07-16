@@ -9,17 +9,23 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    chooseoption.cpp \
     main.cpp \
     loginpage.cpp \
+    reserve.cpp \
     staffpanel.cpp
 
 HEADERS += \
+    chooseoption.h \
     dataBase.h \
     loginpage.h \
+    reserve.h \
     staffpanel.h
 
 FORMS += \
+    chooseoption.ui \
     loginpage.ui \
+    reserve.ui \
     staffpanel.ui \
     temp.ui
 

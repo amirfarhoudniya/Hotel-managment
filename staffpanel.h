@@ -4,6 +4,13 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QMainWindow>
+#include <QSqlQuery>
+#include <QSqlDatabase>
+#include <QMessageBox>
+
+#include "chooseoption.h"
+
+
 
 namespace Ui {
 class staffPanel;
@@ -15,6 +22,10 @@ class staffPanel : public QMainWindow
 
 public:
     explicit staffPanel(QWidget *parent = nullptr);
+    chooseOption *cho ;
+    static int roomNumber ;
+//    int getRoomNumber() ;
+//    void setRoomNumber(int _value);
     ~staffPanel();
 
 private slots:
