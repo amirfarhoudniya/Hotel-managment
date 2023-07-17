@@ -8,6 +8,9 @@ reserve::reserve(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //window icon
+    this->setWindowIcon(QIcon(":/icons/icons/hotel.png"));
+
     ui->calendarWidget->setCursor(Qt::PointingHandCursor);
     ui->reserve_pushButton->setCursor(Qt::PointingHandCursor);
 
@@ -28,9 +31,9 @@ void reserve::on_reserve_pushButton_clicked()
     int id = ui->id_lineEdit->text().toInt() ;
     int roomNumber =  ui->room_lineEdit->text().toInt() ;
 
-    QRandomGenerator randomGenerator;
+    static QRandomGenerator randomGenerator;
     quint64 randomNum = randomGenerator.generate64();
-    int reservationNumber = randomNum % 1000000000000;
+    quint64 reservationNumber = randomNum % 1000000000000;
 
 
     //get the date and Data
@@ -42,7 +45,7 @@ void reserve::on_reserve_pushButton_clicked()
     QSqlQuery query;
     //add resrvation to dataBase
     query.prepare("INSERT INTO reservation ( reservationNumber , guestId , reservationDate , reservationYear, reservationMonth , reservationDay , roomNumber ) VALUES (? , ? , ? , ? , ? , ? , ?)");
-    query.addBindValue(reservationNumber);
+    query.addBindValue(QString::number(reservationNumber));
     query.addBindValue(id);
     query.addBindValue(currentDate);
     query.addBindValue(year);
@@ -62,14 +65,19 @@ void reserve::on_reserve_pushButton_clicked()
     QSqlQuery query3;
     //reserve room
     // status 0 : Ready , 1: reserved , 2:unchecked and 3 : under maintance
-    query3.prepare("INSERT INTO rooms ( roomNumber , status ) VALUES (? , ?)");
-    query3.addBindValue(staffPanel::roomNumber);
-    query3.addBindValue(1);
+    query3.prepare("UPDATE rooms SET status = '1' WHERE roomNumber = :roomNumber ");
+    query3.bindValue(":roomNumber", roomNumber);
     query3.exec();
 
-    QMessageBox::information(this , "Reservation done !" ,  QString("Name : " )+ QString(firstName) +
-                                                             QString("\n lastName : ")+ QString(lastName) +
-                                                             QString("\n reservationNumber : ")+ QString::number(reservationNumber) +
-                                                             QString("\n Room : ") + QString::number(roomNumber));
+    QMessageBox msgBox ;
+    msgBox.setText( QString("Name : " )+ QString(firstName) +
+                                             QString("\n lastName : ")+ QString(lastName) +
+                                             QString("\n reservationNumber : ")+ QString::number(reservationNumber) +
+                                             QString("\n Room : ") + QString::number(roomNumber));
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    int ret = msgBox.exec();
+    if (ret == QMessageBox::Ok) {
+        this->close();
+    }
 }
 

@@ -10,6 +10,9 @@ loginPage::loginPage(QWidget *parent)
 
     this->setWindowTitle("Login Page");
 
+    //window icon
+    this->setWindowIcon(QIcon(":/icons/icons/hotel.png"));
+
     ui->eye_pushButton->setIcon(QIcon(":/icons/icons/eye.png"));
 
     //set type password for lineEdit

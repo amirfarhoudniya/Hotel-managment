@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/icons">
         <file>icons/eye.png</file>
+        <file>icons/hotel.png</file>
     </qresource>
 </RCC>

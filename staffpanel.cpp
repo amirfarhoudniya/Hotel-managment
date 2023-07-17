@@ -9,6 +9,9 @@ staffPanel::staffPanel(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //window icon
+    this->setWindowIcon(QIcon(":/icons/icons/hotel.png"));
+
     cho = new chooseOption() ;
 
 
