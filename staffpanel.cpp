@@ -3,7 +3,7 @@
 
 
 int staffPanel::roomNumber = 0 ;
-
+staffPanel *staffPanel::m_instance = nullptr ;
 
 
 staffPanel::staffPanel(QWidget *parent) :
@@ -542,7 +542,7 @@ int staffPanel::refreshTabs() {
             QSqlRecord record = query.record() ;
             QString firstName = record.value("name").toString();
             QString lastName = record.value("lastName").toString();
-            QString itemText = QString(QString(firstName ) + QString(lastName)) ;
+            QString itemText = QString(QString(firstName ) + " " + QString(lastName)) ;
             QListWidgetItem *item = new QListWidgetItem(itemText);
             ui->staffs_listWidget->addItem(item);
         }
@@ -554,12 +554,19 @@ int staffPanel::refreshTabs() {
     return 1 ;
 }
 
+staffPanel &staffPanel::instance()
+{
+    if(!m_instance) {
+        m_instance = new staffPanel() ;
+    }
+    return *m_instance ;
+}
+
 
 void staffPanel::on_addStaffs_pushButton_clicked()
 {
     addStaff *a = new addStaff() ;
     a->show();
-    this->close();
 }
 
 void staffPanel::on_deleteStaffs_pushButton_clicked()

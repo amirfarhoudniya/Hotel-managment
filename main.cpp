@@ -13,9 +13,10 @@ int main(int argc, char *argv[])
 //    loginPage w;
 //    w.show();
 
-    staffPanel *s = new staffPanel();
-    s->show();
+//    staffPanel *s = new staffPanel();
+//    s->show();
 
+    staffPanel::instance().show();
 
 
     //init dateBase

@@ -25,12 +25,20 @@ class staffPanel : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit staffPanel(QWidget *parent = nullptr);
+//    explicit staffPanel(QWidget *parent = nullptr);
     chooseOption *cho ;
     static int roomNumber ;
     int refreshTabs();
-
+    static staffPanel &instance() ;
     ~staffPanel();
+
+private :
+    explicit staffPanel(QWidget *parent = nullptr);
+    staffPanel(const staffPanel&) = delete;
+    staffPanel& operator=(const staffPanel&) = delete;
+    static staffPanel* m_instance;
+
+
 
 private slots:
 
@@ -123,5 +131,9 @@ private slots:
 private:
     Ui::staffPanel *ui;
 };
+
+
+
+
 
 #endif // STAFFPANEL_H

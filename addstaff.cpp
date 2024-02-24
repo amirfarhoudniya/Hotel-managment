@@ -67,8 +67,7 @@ void addStaff::on_add_pushButton_clicked()
     if(ret == QMessageBox::Yes) {
         query.exec() ;
         QMessageBox::information(this , "" , "done");
-        staffPanel *s = new staffPanel() ;
-        s->show();
+        staffPanel::instance().refreshTabs();
         this->close();
     } else {
         return ;

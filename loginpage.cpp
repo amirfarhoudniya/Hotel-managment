@@ -56,8 +56,9 @@ void loginPage::on_login_pushButton_clicked()
 
             }
 //            QMessageBox::information(this, "Success", "Login successful");
-            staffPanel *s = new staffPanel();
-            s->show();
+//            staffPanel *s = new staffPanel();
+//            s->show();
+            staffPanel::instance().show();
             this->close();
         }else{
             QMessageBox::critical(this , "login fail" , "uncorrect password !");
