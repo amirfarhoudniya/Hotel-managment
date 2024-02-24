@@ -13,21 +13,27 @@ SOURCES += \
     main.cpp \
     loginpage.cpp \
     reserve.cpp \
-    staffpanel.cpp
+    staffpanel.cpp \
+    undermaintance.cpp \
+    addstaff.cpp
 
 HEADERS += \
     chooseoption.h \
     dataBase.h \
     loginpage.h \
     reserve.h \
-    staffpanel.h
+    staffpanel.h \
+    undermaintance.h \
+    addstaff.h
 
 FORMS += \
     chooseoption.ui \
     loginpage.ui \
     reserve.ui \
     staffpanel.ui \
-    temp.ui
+    temp.ui \
+    undermaintance.ui \
+    addstaff.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

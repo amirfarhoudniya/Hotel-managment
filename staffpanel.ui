@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>942</width>
-    <height>578</height>
+    <width>944</width>
+    <height>586</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,12 +18,12 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>901</width>
-     <height>356</height>
+     <width>941</width>
+     <height>581</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -186,7 +186,7 @@
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <widget class="QLabel" name="unreservedRooms_label">
+           <widget class="QLabel" name="reservedRooms_label">
             <property name="geometry">
              <rect>
               <x>10</x>
@@ -196,10 +196,10 @@
              </rect>
             </property>
             <property name="text">
-             <string>Unreserved rooms</string>
+             <string>reserved rooms</string>
             </property>
            </widget>
-           <widget class="QLabel" name="unreservedRooms_label_2">
+           <widget class="QLabel" name="reservedRooms_label_2">
             <property name="geometry">
              <rect>
               <x>16</x>
@@ -624,6 +624,117 @@
       </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QWidget" name="tab_3">
+    <attribute name="title">
+     <string>Page</string>
+    </attribute>
+    <widget class="QLabel" name="uncheckedRooms_label">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>50</y>
+       <width>121</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Unchecked rooms</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="uncheckedRooms_label_2">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>50</y>
+       <width>151</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Rooms under maintance</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>129</x>
+       <y>79</y>
+       <width>711</width>
+       <height>361</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4" columnstretch="5,1,5">
+      <item row="0" column="1">
+       <spacer name="horizontalSpacer_12">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="QListWidget" name="uncheckedRooms_listWidget"/>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="2">
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0">
+         <widget class="QListWidget" name="underMaintance_listWidget"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_4">
+    <attribute name="title">
+     <string>Page</string>
+    </attribute>
+    <widget class="QListWidget" name="staffs_listWidget">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>60</y>
+       <width>256</width>
+       <height>431</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="addStaffs_pushButton">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>70</y>
+       <width>121</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>add / edit staff</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="deleteStaffs_pushButton">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>130</y>
+       <width>121</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>delete staff</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>

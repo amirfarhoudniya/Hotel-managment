@@ -3,6 +3,8 @@
 #include <QMessageBox>
 #include "staffpanel.h"
 #include <QSqlRecord>
+#include "undermaintance.h"
+#include <QInputDialog>
 
 chooseOption::chooseOption(QWidget *parent) :
     QWidget(parent),
@@ -41,11 +43,12 @@ void chooseOption::on_release_pushButton_clicked()
         msgBox.setDefaultButton(QMessageBox::Yes);
         int _ret = msgBox.exec();
 
-        if(_ret == QMessageBox::Yes) {
+        if(_ret == QMessageBox::Yes) {         
             QSqlQuery query2 ;
             // status 0 : Ready , 1: reserved , 2:unchecked and 3 : under maintance
             query2.prepare("UPDATE rooms SET status = '2' WHERE roomNumber = :roomNumber ");
             query2.bindValue(":roomNumber", _roomNumber);
+
             if(query2.exec()){
                 QMessageBox::information(this, "Room Released", "Room has been released successfully.");
                 this->close();
@@ -69,6 +72,7 @@ void chooseOption::on_check_pushButton_clicked()
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No) ;
     msgBox.setDefaultButton(QMessageBox::Yes);
     int _ret = msgBox.exec();
+
     if(_ret == QMessageBox::Yes) {
         //the room has checked by personels
         // status 0 : Ready , 1: reserved , 2:unchecked and 3 : under maintance
@@ -85,23 +89,39 @@ void chooseOption::on_check_pushButton_clicked()
 
 void chooseOption::on_maintenance_pushButton_clicked()
 {
-    QSqlQuery query;
+    this->close();
+    underMaintance *und = new underMaintance() ;
+    und->show();
 
-    QMessageBox msgBox ;
-    msgBox.setText(QString("Room Number : ") + QString::number(staffPanel::roomNumber) );
-    msgBox.setInformativeText("make the room status under maintance ?") ;
-    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No) ;
-    msgBox.setDefaultButton(QMessageBox::Yes);
-    int _ret = msgBox.exec();
-    if(_ret == QMessageBox::Yes) {
-        //room status going to be under maintance
-        // status 0 : Ready , 1: reserved , 2:unchecked and 3 : under maintance
-        query.prepare("UPDATE rooms SET status = '3' WHERE roomNumber = :roomNumber ");
-        query.bindValue(":roomNumber", staffPanel::roomNumber);
-        query.exec();
-        this->close();
-    }else{
-        return ;
-    }
 }
 
+
+void chooseOption::on_deleteReservation_pushButton_clicked()
+{
+    QSqlQuery query;
+
+    QString reservationNumber = QInputDialog::getText(this, "", "Reservation Number ?");
+
+    query.prepare("SELECT COUNT(*) FROM reservation WHERE reservationNumber = :reservationNumber");
+    query.bindValue(":reservationNumber",reservationNumber);
+
+    if (query.exec() && query.next()){
+        //if reservation Number exist, delete the reservation row
+        if(query.value(0).toInt() > 0) {
+
+            query.prepare("DELETE FROM reservation WHERE reservationNumber = :reservationNumber");
+            query.bindValue(":reservationNumber",reservationNumber);
+
+            if(query.exec()) {
+                QMessageBox::information(this , " " , "Delete successfuly") ;
+            } else {
+                QMessageBox::information(this , "" , query.lastError().text()) ;
+            }
+        } else {
+            QMessageBox::information(this , "" , "the reservation number invalid !") ;
+        }
+    }
+
+
+
+}

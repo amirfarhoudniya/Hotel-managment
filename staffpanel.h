@@ -7,10 +7,14 @@
 #include <QSqlQuery>
 #include <QSqlDatabase>
 #include <QMessageBox>
+#include <QSqlRecord>
+#include <QListWidget>
+#include <QCloseEvent>
 
 #include "chooseoption.h"
-
-
+#include "dataBase.h"
+#include "addstaff.h"
+#include "loginpage.h"
 
 namespace Ui {
 class staffPanel;
@@ -24,11 +28,18 @@ public:
     explicit staffPanel(QWidget *parent = nullptr);
     chooseOption *cho ;
     static int roomNumber ;
-//    int getRoomNumber() ;
-//    void setRoomNumber(int _value);
+    int refreshTabs();
+
     ~staffPanel();
 
 private slots:
+
+    void handleUnderMaintanceItemClick(QListWidgetItem *item);
+
+    void handleUncheckedRoomItemClick(QListWidgetItem *item);
+
+    void on_tabWidget_tabBarClicked() ;
+
     void on_room100_pushButton_clicked();
 
     void on_room101_pushButton_clicked();
@@ -100,6 +111,14 @@ private slots:
     void on_room310_pushButton_clicked();
 
     void on_room311_pushButton_clicked();
+
+    void on_reserve_pushButton_clicked();
+
+//    void on_tabWidget_tabBarClicked();
+
+    void on_addStaffs_pushButton_clicked();
+
+    void on_deleteStaffs_pushButton_clicked();
 
 private:
     Ui::staffPanel *ui;

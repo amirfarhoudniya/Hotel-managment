@@ -6,7 +6,8 @@
 #include <QMessageBox>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-
+#include <QSqlRecord>
+#include "dataBase.h"
 namespace Ui {
 class reserve;
 }

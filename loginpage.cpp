@@ -2,6 +2,9 @@
 #include "ui_loginpage.h"
 #include "staffpanel.h"
 
+
+QString loginPage::hierarchy = "manager";
+
 loginPage::loginPage(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::loginPage)
@@ -13,10 +16,20 @@ loginPage::loginPage(QWidget *parent)
     //window icon
     this->setWindowIcon(QIcon(":/icons/icons/hotel.png"));
 
+    //
+    this->setStyleSheet("background-color: #8C52FF ");
+
+    //eye pushbutton's style
     ui->eye_pushButton->setIcon(QIcon(":/icons/icons/eye.png"));
+    ui->eye_pushButton->setCursor(Qt::PointingHandCursor);
+
+    //login pushbutton's style
+    ui->login_pushButton->setCursor(Qt::PointingHandCursor) ;
 
     //set type password for lineEdit
     ui->password_lineEdit->setEchoMode(QLineEdit::Password);
+
+
 }
 
 loginPage::~loginPage()
@@ -37,9 +50,14 @@ void loginPage::on_login_pushButton_clicked()
         query.prepare("SELECT * FROM staffs WHERE password = :password");
         query.bindValue(":password", password);
         if (query.exec() && query.next()) {
+            QSqlRecord record = query.record();
+            if(record.value("hierarchy") == "manager") {
+                hierarchy = "manager" ;
+
+            }
 //            QMessageBox::information(this, "Success", "Login successful");
-            staffPanel *stf = new staffPanel();
-            stf->show();
+            staffPanel *s = new staffPanel();
+            s->show();
             this->close();
         }else{
             QMessageBox::critical(this , "login fail" , "uncorrect password !");

@@ -16,10 +16,12 @@ class loginPage : public QWidget
 
 public:
     loginPage(QWidget *parent = nullptr);
+    static QString hierarchy ;
     ~loginPage();
 
 private:
     Ui::loginPage *ui;
+
 
 private slots :
     void on_login_pushButton_clicked();

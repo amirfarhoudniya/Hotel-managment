@@ -26,6 +26,8 @@ private slots:
 
     void on_maintenance_pushButton_clicked();
 
+    void on_deleteReservation_pushButton_clicked();
+
 private:
     Ui::chooseOption *ui;
 };
