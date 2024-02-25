@@ -1,6 +1,7 @@
 #include "staffpanel.h"
 #include "ui_staffpanel.h"
 
+#include <QDebug>
 
 int staffPanel::roomNumber = 0 ;
 staffPanel *staffPanel::m_instance = nullptr ;
@@ -468,7 +469,8 @@ void staffPanel::handleUncheckedRoomItemClick(QListWidgetItem *item)
     refreshTabs();
 }
 
-int staffPanel::refreshTabs() {
+
+void staffPanel::refreshTabs() {
 
     QSqlQuery query;
     int day = QDate::currentDate().day();
@@ -514,7 +516,7 @@ int staffPanel::refreshTabs() {
     }else {
         // Handle the error if the query fails
         QMessageBox::information(this , "" , query.lastError().text()) ;
-        return -1;
+        return ;
     }
 
     //underMaintance Rooms
@@ -531,7 +533,7 @@ int staffPanel::refreshTabs() {
     }else {
         // Handle the error if the query fails
         QMessageBox::critical(this , "" , query.lastError().text()) ;
-        return -1;
+        return ;
     }
 
     /******************************************* staffs listWidget ***************************************************/
@@ -548,10 +550,8 @@ int staffPanel::refreshTabs() {
         }
     } else {
         QMessageBox::critical(this , "" , query.lastError().text());
-        return -1;
+        return ;
     }
-
-    return 1 ;
 }
 
 staffPanel &staffPanel::instance()
@@ -571,5 +571,29 @@ void staffPanel::on_addStaffs_pushButton_clicked()
 
 void staffPanel::on_deleteStaffs_pushButton_clicked()
 {
-    ui->staffs_listWidget->currentItem() ;
+
+    // Get the clicked item's text
+    QString clickedItemText = ui->staffs_listWidget->currentItem()->text() ;
+
+    QMessageBox::information(this, "" , clickedItemText) ;
+
+    QSqlQuery query ;
+    QStringList parts = clickedItemText.split(' ');
+    QString name = parts.first();
+    QString lastName = parts.last() ;
+
+    QMessageBox::information(this , "" , lastName) ;
+
+    query.prepare("DELETE FROM staffs where name = :name AND lastName = :lastName");
+    query.bindValue(":name" , name);
+    query.bindValue(":lastName" , lastName);
+
+    if(query.exec() && query.next()) {
+        QMessageBox::information(this , "" , "done");
+    } else {
+        QMessageBox::information(this , "" , query.lastError().text());
+    }
+
+    refreshTabs();
+
 }

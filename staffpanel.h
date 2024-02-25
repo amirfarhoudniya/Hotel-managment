@@ -25,10 +25,10 @@ class staffPanel : public QMainWindow
     Q_OBJECT
 
 public:
-//    explicit staffPanel(QWidget *parent = nullptr);
+
     chooseOption *cho ;
     static int roomNumber ;
-    int refreshTabs();
+    void refreshTabs();
     static staffPanel &instance() ;
     ~staffPanel();
 
@@ -121,8 +121,6 @@ private slots:
     void on_room311_pushButton_clicked();
 
     void on_reserve_pushButton_clicked();
-
-//    void on_tabWidget_tabBarClicked();
 
     void on_addStaffs_pushButton_clicked();
 

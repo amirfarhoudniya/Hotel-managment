@@ -31,7 +31,6 @@ FORMS += \
     loginpage.ui \
     reserve.ui \
     staffpanel.ui \
-    temp.ui \
     undermaintance.ui \
     addstaff.ui
 

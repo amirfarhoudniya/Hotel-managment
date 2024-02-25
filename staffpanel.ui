@@ -719,7 +719,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>add / edit staff</string>
+      <string>add staff</string>
      </property>
     </widget>
     <widget class="QPushButton" name="deleteStaffs_pushButton">
