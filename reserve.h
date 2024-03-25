@@ -7,7 +7,10 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include <cstdlib>
+
 #include "dataBase.h"
+
 namespace Ui {
 class reserve;
 }

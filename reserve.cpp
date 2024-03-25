@@ -52,7 +52,7 @@ void reserve::on_reserve_pushButton_clicked()
     }
 
     /***************************************** Reserve mechanism ***********************************************/
-    long long int randomNum = qrand() % 1000000000000 ;
+    long long int randomNum = QRandomGenerator::global()->generate() % 1000000000000 ;
     long long int  reservationNumber = randomNum;
 
     //get the date and Data

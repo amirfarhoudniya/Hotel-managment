@@ -9,7 +9,14 @@
 #include <QMessageBox>
 #include <QSqlRecord>
 #include <QListWidget>
-#include <QCloseEvent>
+#include <QtCharts/QChartView>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QLegend>
+#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QValueAxis>
+#include <QtCharts>
+
 
 #include "chooseoption.h"
 #include "dataBase.h"

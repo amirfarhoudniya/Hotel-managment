@@ -1,8 +1,6 @@
 #include "staffpanel.h"
 #include "ui_staffpanel.h"
 
-#include <QDebug>
-
 int staffPanel::roomNumber = 0 ;
 staffPanel *staffPanel::m_instance = nullptr ;
 
@@ -32,14 +30,13 @@ staffPanel::staffPanel(QWidget *parent) :
     cho = new chooseOption();
 
     //tabWidget's style
-    this->setStyleSheet("QWidget {"
-                        "  background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #FF5757, stop: 1 #8C52FF);"
-                        "}");
+    this->setStyleSheet("background-color:sandybrown ; color:black;");
     ui->tabWidget->setTabText(0 , "Main");
     ui->tabWidget->setTabText(1 , "Reserve");
     ui->tabWidget->setTabText(2 , "Check Room");
     ui->tabWidget->setTabText(3 , "manager panel");
     setCentralWidget(ui->tabWidget);
+    ui->tab_3->setLayout(ui->gridLayout_4);
 
 
     //label's style
@@ -61,15 +58,15 @@ staffPanel::staffPanel(QWidget *parent) :
     ui->uncheckedRooms_pushButton->setCursor(Qt::PointingHandCursor);
     ui->uncheckedRooms_pushButton->setStyleSheet("background-color:red; color:black;");
     ui->reserve_pushButton->setCursor(Qt::PointingHandCursor);
-    ui->reserve_pushButton->setStyleSheet("background-color:gold; color:black ;");
+    ui->reserve_pushButton->setStyleSheet("background-color:gold; color:black;");
 
     //frame's style
     ui->frame->setFrameStyle(QFrame::Panel | QFrame::Raised ) ;
-    ui->frame->setStyleSheet("background-color:cyan;");
+    ui->frame->setStyleSheet("background-color:cyan; border-radius:15px;");
     ui->frame->setLineWidth(3);
 
     ui->frame_2->setFrameStyle(QFrame::Panel | QFrame::Raised);
-    ui->frame_2->setStyleSheet("background-color:orange;");
+    ui->frame_2->setStyleSheet("background-color:orange; border-radius:15px;");
     ui->frame_2->setLineWidth(3);
 
     //styles of listWidgets in check Room tab
@@ -91,12 +88,6 @@ staffPanel::staffPanel(QWidget *parent) :
     } else {
         ui->tabWidget->setTabEnabled(3 , false);
     }
-
-//    addStaff a;
-//    connect(&a, &addStaff::closed, this, &staffPanel::refreshTabs);
-
-
-
 
     //refresh showing data in tabs
     refreshTabs();
@@ -476,6 +467,7 @@ void staffPanel::refreshTabs() {
     int day = QDate::currentDate().day();
     int month = QDate::currentDate().month();
     int year = QDate::currentDate().year();
+    QBarSet *set0 = new QBarSet("Rooms");
 
     /********************************* update the guest number frame ***********************************************/
     query.prepare("SELECT COUNT(*) FROM reservation WHERE reservationYear = :year AND reservationMonth = :month AND reservationDay = :day") ;
@@ -486,6 +478,7 @@ void staffPanel::refreshTabs() {
     if(query.exec() && query.next()) {
         //show the number of guests
         ui->numberOfGuests_label_2->setText(query.value(0).toString()) ;
+
     } else {
         QMessageBox::information(this , "" , query.lastError().text()) ;
     }
@@ -552,6 +545,68 @@ void staffPanel::refreshTabs() {
         QMessageBox::critical(this , "" , query.lastError().text());
         return ;
     }
+
+    /****************************************** chart view *********************************************************/
+    //clear chartItems and widget
+    QLayoutItem* chartLayoutItem = ui->chart_gridLayout->takeAt(0);
+    if (chartLayoutItem) {
+        delete chartLayoutItem->widget();
+        delete chartLayoutItem;
+    }
+
+    query.prepare("SELECT COUNT(*) FROM rooms WHERE status = 0");
+    if(query.exec() && query.next()) {
+        set0->append(query.value(0).toInt());
+    }
+
+    query.prepare("SELECT COUNT(*) FROM rooms WHERE status = 1");
+    if(query.exec() && query.next()) {
+        set0->append(query.value(0).toInt());
+    }
+
+    query.prepare("SELECT COUNT(*) FROM rooms WHERE status = 2");
+    if(query.exec() && query.next()) {
+        set0->append(query.value(0).toInt());
+    }
+
+    query.prepare("SELECT COUNT(*) FROM rooms WHERE status = 3");
+    if(query.exec() && query.next()) {
+        set0->append(query.value(0).toInt());
+    }
+
+
+    // make series of dataSets
+        QBarSeries *series = new QBarSeries();
+        series->append(set0);
+
+    // make chart
+        QChart *chart = new QChart();
+        chart->addSeries(series);
+        chart->setTitle("Room status");
+        chart->setAnimationOptions(QChart::SeriesAnimations);
+
+    // categories of chart
+        QStringList categories;
+        categories << "ready" << "reserved" << "unchecked" << "underMaintance" ;
+
+    // configure axisX of chart
+        QBarCategoryAxis *axisX = new QBarCategoryAxis();
+        axisX->append(categories);
+        chart->addAxis(axisX, Qt::AlignBottom);
+        series->attachAxis(axisX);
+
+    // configure axisY of chart
+        QValueAxis *axisY = new QValueAxis();
+        axisY->setRange(0,36);
+        chart->addAxis(axisY, Qt::AlignLeft);
+        series->attachAxis(axisY);
+        chart->legend()->setVisible(true);
+        chart->legend()->setAlignment(Qt::AlignBottom);
+
+    // add chart to chartView
+        QChartView *chartView = new QChartView(chart);
+        chartView->setRenderHint(QPainter::Antialiasing);
+        ui->chart_gridLayout->addWidget(chartView) ;
 }
 
 staffPanel &staffPanel::instance()
@@ -574,15 +629,10 @@ void staffPanel::on_deleteStaffs_pushButton_clicked()
 
     // Get the clicked item's text
     QString clickedItemText = ui->staffs_listWidget->currentItem()->text() ;
-
-    QMessageBox::information(this, "" , clickedItemText) ;
-
     QSqlQuery query ;
     QStringList parts = clickedItemText.split(' ');
     QString name = parts.first();
     QString lastName = parts.last() ;
-
-    QMessageBox::information(this , "" , lastName) ;
 
     query.prepare("DELETE FROM staffs where name = :name AND lastName = :lastName");
     query.bindValue(":name" , name);
