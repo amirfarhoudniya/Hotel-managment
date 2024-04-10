@@ -3,7 +3,7 @@
 #include "staffpanel.h"
 
 
-QString loginPage::hierarchy = "manager";
+QString loginPage::hierarchy = "";
 
 loginPage::loginPage(QWidget *parent)
     : QWidget(parent)
@@ -11,13 +11,24 @@ loginPage::loginPage(QWidget *parent)
 {
     ui->setupUi(this);
 
+    //window title
     this->setWindowTitle("Login Page");
+
+    //set fixed size for window
+    this->setFixedSize(this->size());
+
+    // Set the background image using stylesheets
+    backgroundImage.load(":/pics/pics/black-and-gold-marble-quartz-worktops-granite.jpg");
+    backgroundImage = backgroundImage.scaled(this->size() ,  Qt::IgnoreAspectRatio );
+
+    // Create a palette and set the background image
+    QPalette palette;
+    palette.setBrush(QPalette::Window, backgroundImage);
+    this->setPalette(palette);
+
 
     //window icon
     this->setWindowIcon(QIcon(":/icons/icons/hotel.png"));
-
-    //
-    this->setStyleSheet("background-color: #8C52FF ");
 
     //eye pushbutton's style
     ui->eye_pushButton->setIcon(QIcon(":/icons/icons/eye.png"));
@@ -53,11 +64,7 @@ void loginPage::on_login_pushButton_clicked()
             QSqlRecord record = query.record();
             if(record.value("hierarchy") == "manager") {
                 hierarchy = "manager" ;
-
             }
-//            QMessageBox::information(this, "Success", "Login successful");
-//            staffPanel *s = new staffPanel();
-//            s->show();
             staffPanel::instance().show();
             this->close();
         }else{
@@ -78,4 +85,5 @@ void loginPage::on_eye_pushButton_released()
 {
     ui->password_lineEdit->setEchoMode(QLineEdit::Password);
 }
+
 

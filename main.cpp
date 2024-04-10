@@ -10,13 +10,13 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-//    loginPage w;
-//    w.show();
+   loginPage w;
+   w.show();
 
 //    staffPanel *s = new staffPanel();
 //    s->show();
 
-    staffPanel::instance().show();
+    // staffPanel::instance().show();
 
 
     //init dateBase

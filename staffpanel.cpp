@@ -19,6 +19,9 @@ staffPanel::staffPanel(QWidget *parent) :
     //window icon
     this->setWindowIcon(QIcon(":/icons/icons/hotel.png"));
 
+    //window title
+    this->setWindowTitle("Hotel Managment");
+
     //set first tab as main tab
     ui->tabWidget->setCurrentIndex(0);
 
@@ -29,12 +32,24 @@ staffPanel::staffPanel(QWidget *parent) :
     //choose option menu (runs when click on room pushButtons)
     cho = new chooseOption();
 
-    //tabWidget's style
-    this->setStyleSheet("background-color:sandybrown ; color:black;");
+
+    // Set the background image using stylesheets
+    backgroundImage.load(":/pics/pics/black-and-gold-marble-quartz-worktops-granite.jpg");
+    backgroundImage = backgroundImage.scaled(this->size() ,  Qt::IgnoreAspectRatio );
+
+    // Create a palette and set the background image
+    QPalette palette;
+    palette.setBrush(QPalette::Window, backgroundImage);
+    this->setPalette(palette);
+    ui->tabWidget->setPalette(palette);
+
+    //tab widget's style
+    ui->tabWidget->setStyleSheet("color:yellow");
     ui->tabWidget->setTabText(0 , "Main");
     ui->tabWidget->setTabText(1 , "Reserve");
     ui->tabWidget->setTabText(2 , "Check Room");
     ui->tabWidget->setTabText(3 , "manager panel");
+    ui->tabWidget->tabBar()->setCursor(Qt::PointingHandCursor);
     setCentralWidget(ui->tabWidget);
     ui->tab_3->setLayout(ui->gridLayout_4);
 
@@ -43,12 +58,9 @@ staffPanel::staffPanel(QWidget *parent) :
     ui->numberOfGuests_label->setAlignment(Qt::AlignCenter);
     ui->numberOfGuests_label->setStyleSheet("color:balck");
     ui->numberOfGuests_label_2->setAlignment(Qt::AlignCenter);
-    ui->numberOfGuests_label_2->setStyleSheet("color:black");
     ui->reservedRooms_label->setAlignment(Qt::AlignCenter);
     ui->reservedRooms_label->setStyleSheet("color:black");
     ui->reservedRooms_label_2->setAlignment(Qt::AlignCenter);
-    ui->reservedRooms_label_2->setStyleSheet("color:black");
-
     ui->numberOfGuests_label_2->setStyleSheet("font-size : 34px ; bold ; color : red") ;
     ui->reservedRooms_label_2->setStyleSheet("font-size : 34px ; bold ; color : red") ;
 
@@ -61,13 +73,52 @@ staffPanel::staffPanel(QWidget *parent) :
     ui->reserve_pushButton->setStyleSheet("background-color:gold; color:black;");
 
     //frame's style
-    ui->frame->setFrameStyle(QFrame::Panel | QFrame::Raised ) ;
+    ui->frame->setFrameStyle(QFrame::Panel | QFrame::Raised);
     ui->frame->setStyleSheet("background-color:cyan; border-radius:15px;");
     ui->frame->setLineWidth(3);
+    ui->frame->setAttribute(Qt::WA_StyleSheet, false);
+    ui->reserve_pushButton->setAttribute(Qt::WA_StyleSheet, false);
 
+    //top status frame's style
+    // Create a QVBoxLayout to hold the QLabel widgets
+    QVBoxLayout *layout = new QVBoxLayout(ui->frame);
+    // Add a spacer item at the top to add distance
+    QSpacerItem *topSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    layout->addItem(topSpacer);
+    // Add numberOfGuests_label to the layout and center-align it
+    layout->addWidget(ui->numberOfGuests_label, 0, Qt::AlignCenter);
+    // Add a small spacer item between the labels
+    QSpacerItem *smallSpacer = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+    layout->addItem(smallSpacer);
+    // Add numberOfGuests_label_2 to the layout and center-align it
+    layout->addWidget(ui->numberOfGuests_label_2, 0, Qt::AlignCenter);
+    // Create a spacer item at the bottom to add distance
+    QSpacerItem *bottomSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    layout->addItem(bottomSpacer);
+    // Set the layout as the frame's layout
+    ui->frame->setLayout(layout);
+
+    //top status frame's style
     ui->frame_2->setFrameStyle(QFrame::Panel | QFrame::Raised);
     ui->frame_2->setStyleSheet("background-color:orange; border-radius:15px;");
     ui->frame_2->setLineWidth(3);
+    // Create a QVBoxLayout to hold the QLabel widgets
+    QVBoxLayout *layout2 = new QVBoxLayout(ui->frame_2);
+    // Add a spacer item at the top to add distance
+    QSpacerItem *topSpacer2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    layout2->addItem(topSpacer2);
+    // Add numberOfGuests_label to the layout and center-align it
+    layout2->addWidget(ui->reservedRooms_label, 0, Qt::AlignCenter);
+    // Add a small spacer item between the labels
+    QSpacerItem *smallSpacer2 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+    layout2->addItem(smallSpacer2);
+    // Add numberOfGuests_label_2 to the layout and center-align it
+    layout2->addWidget(ui->reservedRooms_label_2, 0, Qt::AlignCenter);
+    // Create a spacer item at the bottom to add distance
+    QSpacerItem *bottomSpacer2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    layout2->addItem(bottomSpacer2);
+    // Set the layout as the frame's layout
+    ui->frame_2->setLayout(layout2);
 
     //styles of listWidgets in check Room tab
     ui->uncheckedRooms_listWidget->setStyleSheet("font-family: Times New Roman; font-size: 20px;");
@@ -78,15 +129,17 @@ staffPanel::staffPanel(QWidget *parent) :
 
     //styles of manager panel tab
     ui->staffs_listWidget->setStyleSheet("font-family: Times New Roman; font-size: 20px;");
-    ui->addStaffs_pushButton->setStyleSheet("font-family: Times New Roman; font-size: 20px; border-radius:10px; background-color:yellow");
-    ui->deleteStaffs_pushButton->setStyleSheet("font-family: Times New Roman; font-size: 20px; border-radius:10px; background-color:red");
+    ui->addStaffs_pushButton->setStyleSheet("font-family: Times New Roman; font-size:20px; "
+                                            "border-radius:10px; background-color:yellow; color:black");
+    ui->deleteStaffs_pushButton->setStyleSheet("font-family: Times New Roman; font-size: 20px;"
+                                               "border-radius:10px; background-color:red; color:black");
     ui->addStaffs_pushButton->setCursor(Qt::PointingHandCursor) ;
     ui->deleteStaffs_pushButton->setCursor(Qt::PointingHandCursor);
 
     if(loginPage::hierarchy == "manager") {
         ui->tabWidget->setTabEnabled(3 , true);
     } else {
-        ui->tabWidget->setTabEnabled(3 , false);
+        ui->tabWidget->setTabEnabled(3 , false);       
     }
 
     //refresh showing data in tabs
@@ -638,8 +691,8 @@ void staffPanel::on_deleteStaffs_pushButton_clicked()
     query.bindValue(":name" , name);
     query.bindValue(":lastName" , lastName);
 
-    if(query.exec() && query.next()) {
-        QMessageBox::information(this , "" , "done");
+    if(query.exec()) {
+           QMessageBox::information(this , "" , "done");
     } else {
         QMessageBox::information(this , "" , query.lastError().text());
     }
@@ -647,3 +700,40 @@ void staffPanel::on_deleteStaffs_pushButton_clicked()
     refreshTabs();
 
 }
+
+void staffPanel::on_checkedRooms_pushButton_clicked()
+{
+    ui->tabWidget->setCurrentIndex(2);
+}
+
+
+void staffPanel::on_uncheckedRooms_pushButton_clicked()
+{
+    ui->tabWidget->setCurrentIndex(2);
+}
+
+void staffPanel::resizeEvent(QResizeEvent* event)
+{
+    // Calculate the new size for the background image
+    QPixmap scaledImage = backgroundImage.scaled(event->size(), Qt::IgnoreAspectRatio);
+
+    QPalette palette;
+    palette.setBrush(QPalette::Window, scaledImage);
+    this->setPalette(palette);
+    ui->tabWidget->setPalette(palette);
+
+    // Call the base class implementation of resizeEvent
+    QWidget::resizeEvent(event);
+}
+
+
+void staffPanel::on_tabWidget_tabBarClicked(int index)
+{
+    if(loginPage::hierarchy != "manager" && !ui->tabWidget->isTabEnabled(index)) {
+        QMessageBox::critical(this , "" , "access denied !");
+    }
+}
+
+
+
+

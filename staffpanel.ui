@@ -32,6 +32,94 @@
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="0" column="0">
       <layout class="QGridLayout" name="gridLayout" rowstretch="2,0,7" columnstretch="1,5,0,0">
+       <item row="2" column="0">
+        <layout class="QGridLayout" name="reservationLayout">
+         <item row="0" column="0">
+          <widget class="QPushButton" name="reserve_pushButton">
+           <property name="text">
+            <string>reserve</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0" colspan="4">
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="3">
+        <layout class="QGridLayout" name="roomCheckLayout">
+         <item row="4" column="0">
+          <spacer name="verticalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="0">
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="0">
+          <widget class="QPushButton" name="checkedRooms_pushButton">
+           <property name="text">
+            <string>checked Rooms</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <spacer name="verticalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="3" column="0">
+          <widget class="QPushButton" name="uncheckedRooms_pushButton">
+           <property name="text">
+            <string>unchecked Rooms</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="1">
+        <layout class="QGridLayout" name="chart_gridLayout">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetMaximumSize</enum>
+         </property>
+        </layout>
+       </item>
        <item row="2" column="2">
         <spacer name="horizontalSpacer_4">
          <property name="orientation">
@@ -49,14 +137,17 @@
         </spacer>
        </item>
        <item row="0" column="0" colspan="4">
-        <layout class="QHBoxLayout" name="statusLayout" stretch="3,2,0,2,3">
+        <layout class="QHBoxLayout" name="statusLayout" stretch="3,1,0,1,3">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
          <item>
           <spacer name="horizontalSpacer_2">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Preferred</enum>
+            <enum>QSizePolicy::Expanding</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -68,17 +159,11 @@
          </item>
          <item>
           <widget class="QFrame" name="frame">
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
            <widget class="QLabel" name="numberOfGuests_label">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>10</y>
+              <x>14</x>
+              <y>0</y>
               <width>111</width>
               <height>21</height>
              </rect>
@@ -90,9 +175,9 @@
            <widget class="QLabel" name="numberOfGuests_label_2">
             <property name="geometry">
              <rect>
-              <x>16</x>
-              <y>40</y>
-              <width>121</width>
+              <x>0</x>
+              <y>30</y>
+              <width>151</width>
               <height>41</height>
              </rect>
             </property>
@@ -171,94 +256,6 @@
           </spacer>
          </item>
         </layout>
-       </item>
-       <item row="2" column="1">
-        <layout class="QGridLayout" name="chart_gridLayout">
-         <property name="sizeConstraint">
-          <enum>QLayout::SetMaximumSize</enum>
-         </property>
-        </layout>
-       </item>
-       <item row="2" column="0">
-        <layout class="QGridLayout" name="reservationLayout">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="reserve_pushButton">
-           <property name="text">
-            <string>reserve</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="2" column="3">
-        <layout class="QGridLayout" name="roomCheckLayout">
-         <item row="3" column="0">
-          <widget class="QPushButton" name="uncheckedRooms_pushButton">
-           <property name="text">
-            <string>unchecked Rooms</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <spacer name="verticalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="0">
-          <spacer name="verticalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="2" column="0">
-          <spacer name="verticalSpacer_5">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="0">
-          <widget class="QPushButton" name="checkedRooms_pushButton">
-           <property name="text">
-            <string>checked Rooms</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="0" colspan="4">
-        <spacer name="horizontalSpacer_5">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </item>

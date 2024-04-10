@@ -15,7 +15,7 @@
 #include <QtCharts/QLegend>
 #include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QValueAxis>
-#include <QtCharts>
+
 
 
 #include "chooseoption.h"
@@ -44,6 +44,7 @@ private :
     staffPanel(const staffPanel&) = delete;
     staffPanel& operator=(const staffPanel&) = delete;
     static staffPanel* m_instance;
+    QPixmap backgroundImage ;
 
 
 
@@ -54,6 +55,8 @@ private slots:
     void handleUncheckedRoomItemClick(QListWidgetItem *item);
 
     void on_tabWidget_tabBarClicked() ;
+
+    void resizeEvent(QResizeEvent* event);
 
     void on_room100_pushButton_clicked();
 
@@ -132,6 +135,12 @@ private slots:
     void on_addStaffs_pushButton_clicked();
 
     void on_deleteStaffs_pushButton_clicked();
+
+    void on_checkedRooms_pushButton_clicked();
+
+    void on_uncheckedRooms_pushButton_clicked();
+
+    void on_tabWidget_tabBarClicked(int index);
 
 private:
     Ui::staffPanel *ui;

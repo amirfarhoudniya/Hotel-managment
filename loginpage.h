@@ -21,6 +21,7 @@ public:
 
 private:
     Ui::loginPage *ui;
+    QPixmap backgroundImage ;
 
 
 private slots :
@@ -29,5 +30,6 @@ private slots :
     void on_eye_pushButton_pressed();
 
     void on_eye_pushButton_released();
+
 };
 #endif // LOGINPAGE_H

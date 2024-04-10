@@ -3,4 +3,7 @@
         <file>icons/eye.png</file>
         <file>icons/hotel.png</file>
     </qresource>
+    <qresource prefix="/pics">
+        <file>pics/black-and-gold-marble-quartz-worktops-granite.jpg</file>
+    </qresource>
 </RCC>
